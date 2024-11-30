@@ -23,7 +23,7 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
-// AddSwaggerGen, damit der "Authorize"-Button in Swagger sichtbar ist
+// AddSwaggerGen, damit der "Authorize"-Button in Swagger sichtbar ist.
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
