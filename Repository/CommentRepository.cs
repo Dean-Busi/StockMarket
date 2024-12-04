@@ -46,7 +46,7 @@ namespace api.Repository
         }
 
         // GET
-        public async Task<List<Models.Comment>> GetAllAsync()
+        public async Task<List<Comment>> GetAllAsync()
         {
             return await _context.Comments.Include(a => a.User).ToListAsync();
         }
@@ -61,19 +61,19 @@ namespace api.Repository
         // PUT
         public async Task<Comment?> UpdateAsync(int id, Comment commentModel)
         {
-            var existingComment = await _context.Comments.FindAsync(id);
+            var commentToUpdate = await _context.Comments.FindAsync(id);
 
-            if (existingComment == null)
+            if (commentToUpdate == null)
             {
                 return null;
             }
 
-            existingComment.Title = commentModel.Title;
-            existingComment.Content = commentModel.Content;
+            commentToUpdate.Title = commentModel.Title;
+            commentToUpdate.Content = commentModel.Content;
 
             await _context.SaveChangesAsync();
 
-            return existingComment;
+            return commentToUpdate;
         }
     }
 }

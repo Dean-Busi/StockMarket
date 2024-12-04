@@ -68,7 +68,8 @@ builder.Services.AddCors((options) =>
     {
         builder.WithOrigins("http://localhost:3000")
         .AllowAnyHeader()
-        .AllowAnyMethod();
+        .AllowAnyMethod()
+        .AllowCredentials();
     });
 });
 
@@ -120,3 +121,4 @@ app.MapControllers();
 app.UseCors("ReactApp");
 
 app.Run();
+

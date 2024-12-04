@@ -9,6 +9,8 @@ namespace api.Mappers
 {
     public static class StockMapper
     {
+        // Im Grunde handelt es sich hier um die Art und Weise, 
+        // wie der User ein Stock nach jedem Request angezeigt bekommt.
         public static StockDto ToStockDto(this Stock stockModel)
         {
             return new StockDto
@@ -22,16 +24,29 @@ namespace api.Mappers
                 Comments = stockModel.Comments.Select(c => c.ToCommentDto()).ToList()
             };
         }
-
-        public static Stock ToStockFromCreateDto(this CreateStockDto stockDto)
+        // Wird ausgeführt beim "Create" -Request.
+        public static Stock ToStockFromCreateDto(this CreateStockDto createStockDto)
         {
             return new Stock
             {
-                Symbol = stockDto.Symbol,
-                CompanyName = stockDto.CompanyName,
-                Industry = stockDto.Industry,
-                Price = stockDto.Price,
-                LastDiv = stockDto.LastDiv,
+                Symbol = createStockDto.Symbol,
+                CompanyName = createStockDto.CompanyName,
+                Industry = createStockDto.Industry,
+                Price = createStockDto.Price,
+                LastDiv = createStockDto.LastDiv,
+            };
+        }
+
+        // Wird ausgeführt beim "Update" -Request.
+        public static Stock ToStockFromUpdateDto(this UpdateStockDto updateStockDto)
+        {
+            return new Stock
+            {
+                Symbol = updateStockDto.Symbol,
+                CompanyName = updateStockDto.CompanyName,
+                Industry = updateStockDto.Industry,
+                Price = updateStockDto.Price,
+                LastDiv = updateStockDto.LastDiv,
             };
         }
     }

@@ -17,14 +17,12 @@ namespace api.Controllers
     [ApiController]
     public class StockController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        // Du hast hier unten den ApplicationDbContext und die _context-Variablen weggenommen, weil sie jetzt im Repository sind.
         private readonly IStockRepository _stockRepo;
-        public StockController(ApplicationDBContext context, IStockRepository stockRepo)
+        public StockController(IStockRepository stockRepo)
         {
             _stockRepo = stockRepo;
-            _context = context;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
@@ -49,7 +47,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(stock);
+            return Ok(stock.ToStockDto());
         }
 
         [HttpPost]
@@ -68,7 +66,7 @@ namespace api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var stockToUpdate = await _stockRepo.UpdateAsync(id, updateDto);
+            var stockToUpdate = await _stockRepo.UpdateAsync(id, updateDto.ToStockFromUpdateDto());
 
             if (stockToUpdate == null)
             {

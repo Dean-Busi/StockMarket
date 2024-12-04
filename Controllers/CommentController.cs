@@ -73,7 +73,7 @@ namespace api.Controllers
             var username = User.GetUsername();
             var user = await _userManager.FindByNameAsync(username);
 
-            var commentModel = commentDto.ToCommentFromCreate(stockId);
+            var commentModel = commentDto.ToCommentFromCreateDto(stockId);
             commentModel.UserId = user.Id;
 
             await _commentRepo.CreateAsync(commentModel);
@@ -83,12 +83,12 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentDto updateDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var comment = await _commentRepo.UpdateAsync(id, updateDto.ToCommentFromUpdate());
+            var comment = await _commentRepo.UpdateAsync(id, updateDto.ToCommentFromUpdateDto());
 
             if (comment == null)
             {

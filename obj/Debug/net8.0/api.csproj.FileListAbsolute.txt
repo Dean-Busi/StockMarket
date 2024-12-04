@@ -584,3 +584,4 @@ C:\_VSCode_Projekte\_.NET\Stock_Market - Kopie\api\obj\Debug\net8.0\api.csproj.U
 C:\_VSCode_Projekte\_.NET\Stock_Market - Kopie\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 C:\_VSCode_Projekte\_.NET\Stock_Market - Kopie\api\obj\Debug\net8.0\ref\api.dll
 C:\_VSCode_Projekte\_.NET\Stock_Market\api\bin\Debug\net8.0\System.ClientModel.dll
+C:\_VSCode_Projekte\_.NET\Stock_Market\api\obj\Debug\net8.0\api.sourcelink.json

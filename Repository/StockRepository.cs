@@ -80,14 +80,14 @@ namespace api.Repository
             return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
         }
 
-        // ???
+        // Wird ausgeführt wenn der "POST-COMMENT" Request verwendet wird.
         public Task<bool> StockExists(int id)
         {
             return _context.Stocks.AnyAsync(s => s.Id == id);
         }
 
         // PUT
-        public async Task<Stock?> UpdateAsync(int id, UpdateStockDto stockDto)
+        public async Task<Stock?> UpdateAsync(int id, Stock stockModel)
         {
             var stockToUpdate = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -95,11 +95,12 @@ namespace api.Repository
             {
                 return null;
             }
-            stockToUpdate.Symbol = stockDto.Symbol;
-            stockToUpdate.CompanyName = stockDto.CompanyName;
-            stockToUpdate.Industry = stockDto.Industry;
-            stockToUpdate.Price = stockDto.Price;
-            stockToUpdate.LastDiv = stockDto.LastDiv;
+
+            stockToUpdate.Symbol = stockModel.Symbol;
+            stockToUpdate.CompanyName = stockModel.CompanyName;
+            stockToUpdate.Industry = stockModel.Industry;
+            stockToUpdate.Price = stockModel.Price;
+            stockToUpdate.LastDiv = stockModel.LastDiv;
 
             await _context.SaveChangesAsync();
 
