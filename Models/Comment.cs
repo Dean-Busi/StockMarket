@@ -15,13 +15,9 @@ namespace api.Models
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-        public int? StockId { get; set; } //Fremdschlüssel
+        public int StockId { get; set; } //Fremdschlüssel (Id des Eltern-Modells)
 
         public Stock? Stock { get; set; } // Navigation Property
-
-        public string UserId { get; set; } = string.Empty;
-
-        public User? User { get; set; }
     }
 }
 

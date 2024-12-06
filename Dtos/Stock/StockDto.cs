@@ -23,7 +23,7 @@ namespace api.Dtos
 
         public decimal LastDiv { get; set; }
 
-        public List<CommentDto> Comments { get; set; }
+        public List<CommentDto>? Comments { get; set; }
     }
 }
 

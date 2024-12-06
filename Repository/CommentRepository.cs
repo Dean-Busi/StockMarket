@@ -48,14 +48,13 @@ namespace api.Repository
         // GET
         public async Task<List<Comment>> GetAllAsync()
         {
-            return await _context.Comments.Include(a => a.User).ToListAsync();
+            return await _context.Comments.ToListAsync();
         }
 
         // GETBYID
         public async Task<Comment?> GetByIdAsync(int id)
         {
-            return await _context.Comments.Include(a => a.User)
-            .FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         // PUT

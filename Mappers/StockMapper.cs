@@ -24,7 +24,7 @@ namespace api.Mappers
                 Comments = stockModel.Comments.Select(c => c.ToCommentDto()).ToList()
             };
         }
-        // Wird ausgeführt beim "Create" -Request.
+        
         public static Stock ToStockFromCreateDto(this CreateStockDto createStockDto)
         {
             return new Stock
@@ -37,7 +37,6 @@ namespace api.Mappers
             };
         }
 
-        // Wird ausgeführt beim "Update" -Request.
         public static Stock ToStockFromUpdateDto(this UpdateStockDto updateStockDto)
         {
             return new Stock

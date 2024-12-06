@@ -17,8 +17,8 @@ namespace api.Controllers
     [ApiController]
     public class StockController : ControllerBase
     {
-        // Du hast hier unten den ApplicationDbContext und die _context-Variablen weggenommen, weil sie jetzt im Repository sind.
         private readonly IStockRepository _stockRepo;
+
         public StockController(IStockRepository stockRepo)
         {
             _stockRepo = stockRepo;
@@ -63,10 +63,8 @@ namespace api.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockDto updateDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var stockToUpdate = await _stockRepo.UpdateAsync(id, updateDto.ToStockFromUpdateDto());
+            var updatedStockValue = updateDto.ToStockFromUpdateDto();
+            var stockToUpdate = await _stockRepo.UpdateAsync(id, updatedStockValue);
 
             if (stockToUpdate == null)
             {

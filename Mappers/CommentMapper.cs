@@ -18,12 +18,10 @@ namespace api.Mappers
                 Title = commentModel.Title,
                 Content = commentModel.Content,
                 CreatedOn = commentModel.CreatedOn,
-                // CreatedBy = commentModel.User.UserName,
                 StockId = commentModel.StockId
             };
         }
 
-        // Wird ausgeführt beim "Create" -Request.
         public static Comment ToCommentFromCreateDto(this CreateCommentDto commentDto, int stockId)
         {
             return new Comment
@@ -34,13 +32,12 @@ namespace api.Mappers
             };
         }
 
-        // Wird ausgeführt beim "Update" -Request.
         public static Comment ToCommentFromUpdateDto(this UpdateCommentDto commentDto)
         {
             return new Comment
             {
                 Title = commentDto.Title,
-                Content = commentDto.Content
+                Content = commentDto.Content,
             };
         }
     }

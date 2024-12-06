@@ -25,7 +25,6 @@ namespace api.Models
 
         public List<Comment> Comments { get; set; } = new List<Comment>();
 
-        public List<Portfolio> Portfolios { get; set; } = new List<Portfolio>();
     }
 }
 
