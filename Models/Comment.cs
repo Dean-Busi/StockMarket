@@ -15,13 +15,13 @@ namespace api.Models
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-        public int StockId { get; set; } //Fremdschlüssel (Id des Eltern-Modells)
+        public int StockId { get; set; }
 
-        public Stock? Stock { get; set; } // Navigation Property
+        public Stock? Stock { get; set; }
 
-        public string UserId { get; set; } = string.Empty;
+        public string UserId { get; set; } //Fremdschlüssel (Id des Eltern-Modells)
 
-        public User? User { get; set; }
+        public User User { get; set; } // Navigation Property
     }
 }
 

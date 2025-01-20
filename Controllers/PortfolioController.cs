@@ -65,7 +65,12 @@ namespace api.Controllers
             {
                 return StatusCode(500, "could not create");
             }
-            else return Created();
+
+            else return Created("",
+            new
+            {
+                Message = "Die Aktie wurde erfolgreich hinzugefügt."
+            });
         }
 
         [HttpDelete]
@@ -77,10 +82,10 @@ namespace api.Controllers
 
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(user);
 
-            var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower())
+            var stockToDelete = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower())
             .ToList();
 
-            if (filteredStock.Count() == 1)
+            if (stockToDelete.Count() == 1)
             {
                 await _portfolioRepo.DeletePortfolio(user, symbol);
             }
@@ -93,3 +98,4 @@ namespace api.Controllers
         }
     }
 }
+

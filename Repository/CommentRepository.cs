@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos;
+using api.Helpers;
 using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -21,7 +22,7 @@ namespace api.Repository
         }
 
         // POST
-        public async Task<Comment> CreateAsync(Comment commentModel)
+        public async Task<Comment?> CreateAsync(Comment commentModel)
         {
             await _context.Comments.AddAsync(commentModel);
             await _context.SaveChangesAsync();
@@ -45,10 +46,22 @@ namespace api.Repository
             return commentModel;
         }
 
-        // GETALL
-        public async Task<List<Comment>> GetAllAsync()
+        // GET
+        public async Task<List<Comment>> GetAllAsync(CommentQueryObject queryObject)
         {
-            return await _context.Comments.Include(a => a.User).ToListAsync();
+            var comments = _context.Comments.Include(a => a.User).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(queryObject.Symbol))
+            {
+                comments = comments.Where(s => s.Stock.Symbol == queryObject.Symbol);
+            };
+
+            if (queryObject.IsDescending == true)
+            {
+                comments = comments.OrderByDescending(c => c.CreatedOn);
+            }
+
+            return await comments.ToListAsync();
         }
 
         // GETBYID

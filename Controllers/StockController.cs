@@ -19,6 +19,7 @@ namespace api.Controllers
     {
         private readonly IStockRepository _stockRepo;
 
+        // Dependecy Injection
         public StockController(IStockRepository stockRepo)
         {
             _stockRepo = stockRepo;
@@ -44,9 +45,9 @@ namespace api.Controllers
 
             if (stock == null)
             {
-                return NotFound();
+                return NotFound("Der Eintrag wurde nicht gefunden.");
             }
-
+            
             return Ok(stock.ToStockDto());
         }
 
@@ -68,7 +69,7 @@ namespace api.Controllers
 
             if (stockToUpdate == null)
             {
-                return NotFound();
+                return NotFound("Der Eintrag wurde nicht gefunden.");
             }
 
             return Ok(stockToUpdate.ToStockDto());
@@ -85,11 +86,13 @@ namespace api.Controllers
 
             if (stockToDelete == null)
             {
-                return NotFound();
+                return NotFound("Der Eintrag wurde nicht gefunden.");
             }
 
-            return NoContent();
+            return Ok("Eintrag wurde gelöscht.");
         }
     }
 }
+
+
 

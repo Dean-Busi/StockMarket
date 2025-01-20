@@ -7,7 +7,7 @@ namespace api.Models
 {
     public class Portfolio
     {
-        public string UserId {get; set; } = string.Empty;
+        public string UserId {get; set; }
 
         public int StockId {get; set; }
 
@@ -16,3 +16,4 @@ namespace api.Models
         public Stock Stock {get; set; }
     }
 }
+

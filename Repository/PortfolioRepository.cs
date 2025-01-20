@@ -18,6 +18,9 @@ namespace api.Repository
             _context = context;
         }
 
+        // ---------------------------------------------------------------------
+
+        // POST
         public async Task<Portfolio> CreateAsync(Portfolio portfolio)
         {
             await _context.Portfolios.AddAsync(portfolio);
@@ -26,6 +29,7 @@ namespace api.Repository
             return portfolio;
         }
 
+        // DELETE
         public async Task<Portfolio> DeletePortfolio(User user, string symbol)
         {
             var portfolioModel = await _context.Portfolios.FirstOrDefaultAsync
@@ -42,6 +46,7 @@ namespace api.Repository
             return portfolioModel;
         }
 
+        // GET
         public async Task<List<Stock>> GetUserPortfolio(User user)
         {
             return await _context.Portfolios.Where(u => u.UserId == user.Id)
