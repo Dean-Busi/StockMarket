@@ -9,8 +9,7 @@ namespace api.Mappers
 {
     public static class StockMapper
     {
-        // Im Grunde handelt es sich hier um die Art und Weise, 
-        // wie der User ein Stock nach jedem Request angezeigt bekommt.
+
         public static StockDto ToStockDto(this Stock stockModel)
         {
             return new StockDto
